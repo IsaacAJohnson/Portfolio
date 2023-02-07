@@ -1,17 +1,21 @@
 ---
-title: "Isaac Johnson's Website Portfolio"
+  title: "Isaac Johnson's Portfolio"
+  navbar:
+        left:
+            text: Visualization
+            href: Resources.qmd
+  right:
+    links: 
+      - icon: github
+        href: https://github.com/IsaacAJohnson
+      - icon: linkedin
+        href: https://www.linkedin.com/in/isaac-johnson001/
+      - icon: envelope
+        href: mailto:ijohnson2@willamette.edu
 ---
+## Welcome!
 
-This is a Quarto website.
+I am excited to share with you some of my progress so far.  I am currently enrolled in a Masters of Data Science program at Willamette University, and looking forward to graduation this August '23! Please take a look around and would love to hear from. 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
-```{r}
-1 + 1
-```
-
-#Addition
-
-Here I added something just like in the video
-
-testing 2/6/23
+[![](/Users/isaacjohnson/Willamette/Portfolio/images/Willamette_logo.png){fig_align="left"}](https://willamette.edu)

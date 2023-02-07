@@ -2,8 +2,7 @@
 title: "About"
 ---
 
-About this site
+I making a career pivot, and working on something I have wanted to do for a long time.  Currently enrolled at Willamette Univeristy in their Master's of Data Science program, and am expecting to graduate this August '23. Previously I worked in healthcare as a medical and pharmaceutical sales representative.  Through that I got to learn many aspects of working in healthcare very thoroughly, including health insurance, formularies, prior authorizations, managed care plans, communicating with doctors, staff, and many other stakeholders. 
 
-```{r}
-1 + 1
-```
+more to come.....
+
