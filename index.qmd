@@ -1,5 +1,10 @@
 ---
   title: "Isaac Johnson's Portfolio"
+  listing:
+        contents: posts
+        sort: "date desc"
+        type: default
+        categories: true
   navbar:
         left:
             text: Visualization
@@ -18,4 +23,4 @@
 I am excited to share with you some of my progress so far.  I am currently enrolled in a Masters of Data Science program at Willamette University, and looking forward to graduation this August '23! Please take a look around and would love to hear from you. 
 
 
-[![](/Users/isaacjohnson/Willamette/Portfolio/images/Willamette_logo.png){fig_align="left"}](https://willamette.edu)
+[![](images/Willamette_logo.png)](https://willamette.edu){fig_align="left"}

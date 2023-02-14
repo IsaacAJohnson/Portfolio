@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "posts/trial/index.html",
+    "href": "posts/trial/index.html",
+    "title": "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020",
+    "section": "",
+    "text": "Show the code\n#| echo: true\n\nlibrary(ggplot2)\nlibrary(tidytuesdayR)\nlibrary(tidyverse)\n\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.1      ✔ stringr 1.4.1 \n✔ readr   2.1.3      ✔ forcats 0.5.2 \n✔ purrr   0.3.5      \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n\n\nShow the code\nlibrary(cowplot)\nlibrary(magick)\n\n\nLinking to ImageMagick 6.9.12.3\nEnabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp\nDisabled features: fftw, ghostscript, x11\n\n\nShow the code\ndata <- tt_load('2020-10-06')\n\n\n--- Compiling #TidyTuesday Information for 2020-10-06 ----\n--- There is 1 file available ---\n--- Starting Download ---\n\n\n\n    Downloading file 1 of 1: `tournament.csv`\n\n\n--- Download complete ---\n\n\nShow the code\ntournament <- data$tournament \n\noregon <- tournament %>%\n  filter(school == \"Oregon\") %>%\n  select(school, year, full_percent, tourney_finish)\n\n#save locally\nwrite.csv(tournament, \"/Users/isaacjohnson/Documents/Scanner Output/School/Willamette/Communicating with Data 020123/tournament.csv\", row.names=FALSE)"
+  },
+  {
+    "objectID": "posts/trial/index.html#plot-the-data",
+    "href": "posts/trial/index.html#plot-the-data",
+    "title": "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020",
+    "section": "Plot the data",
+    "text": "Plot the data\n\n\nShow the code\nggplot(oregon, aes(x = year, y = full_percent)) +\n    geom_path() +\n    geom_point() +\n    geom_text(aes(label = paste0(tourney_finish)))"
+  },
+  {
+    "objectID": "posts/trial/index.html#clean-up-the-chart",
+    "href": "posts/trial/index.html#clean-up-the-chart",
+    "title": "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020",
+    "section": "Clean up the chart",
+    "text": "Clean up the chart\n\n\nShow the code\nggplot(oregon, aes(x = year, y = full_percent)) + \n  geom_path() + \n  geom_point() + \n  geom_text(aes(label = paste0(tourney_finish)), \n            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),\n            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1))"
+  },
+  {
+    "objectID": "posts/trial/index.html#more-editing-the-plot",
+    "href": "posts/trial/index.html#more-editing-the-plot",
+    "title": "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020",
+    "section": "More editing the plot",
+    "text": "More editing the plot\n\n\nShow the code\nggplot(oregon, aes(x = year, y = full_percent)) + \n  geom_path() + \n  geom_point() + \n  geom_text(aes(label = paste0(tourney_finish)), \n            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),\n            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1)) + \n  labs(title = \"Oregon NCAA Tournament History\",\n       subtitle = \"Total win/loss percentage and end result by year\",\n      x = \"Year\", y = \"Total win/loss percentage\", \n      caption = \"inspired by @osteobjorn | #TidyTuesday 06-10-2020 | source: FiveThirtyEight\")"
+  },
+  {
+    "objectID": "posts/trial/index.html#add-color",
+    "href": "posts/trial/index.html#add-color",
+    "title": "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020",
+    "section": "Add color",
+    "text": "Add color\n\n\nShow the code\nggplot(oregon, aes(x = year, y = full_percent)) + \n  geom_path(col = \"#FEE123\") + \n  geom_point(col = \"#FEE123\") + \n  geom_text(aes(label = paste0(tourney_finish)), \n            col = \"white\",\n            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),\n            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1)) + \n  labs(title = \"Oregon NCAA Tournament History\",\n       subtitle = \"Total win/loss percentage and end result by year\",\n      x = \"Year\", y = \"Total win/loss percentage\", \n      caption = \"inspired by @osteobjorn | #TidyTuesday 06-10-2020 | source: FiveThirtyEight\")+\n    theme(plot.background = element_rect(fill = \"#154733\"), # background colour\n        plot.title = element_text(colour = \"#FEE123\", # text colour\n                                  size = 20, # font size\n                                  face = \"bold\"), # bold text\n        plot.subtitle = element_text(colour = \"#FEE123\",\n                                     size = 14),\n        plot.caption = element_text(colour = \"#FEE123\"),\n        axis.text = element_text(colour = \"#FEE123\"),\n        axis.title.x = element_blank(), \n        axis.title.y = element_blank(), \n        axis.text.y = element_blank(),\n        plot.margin = unit(c(1,1,1,1), \"cm\"), \n        panel.background = element_rect(fill = \"#154733\"), \n        panel.grid = element_blank())"
+  },
+  {
+    "objectID": "posts/trial/index.html#added-logo",
+    "href": "posts/trial/index.html#added-logo",
+    "title": "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020",
+    "section": "Added logo",
+    "text": "Added logo\n\n\nShow the code\nimg <- image_read(path = \"https://goducks.com/images/uoregon_logo.png\")\n\np <- ggplot(oregon, aes(x = year, y = full_percent)) + \n  geom_path(col = \"#FEE123\") + \n  geom_point(col = \"#FEE123\") + \n  geom_text(aes(label = paste0(tourney_finish)), \n            col = \"white\",\n            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),\n            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1)) + \n  labs(title = \"Oregon NCAA Tournament History\",\n       subtitle = \"Total win/loss percentage and end result by year\",\n      x = \"Year\", y = \"Total win/loss percentage\", \n      caption = \"inspired by @osteobjorn | #TidyTuesday 06-10-2020 | source: FiveThirtyEight\")+\n    theme(plot.background = element_rect(fill = \"#154733\"), # background colour\n        plot.title = element_text(colour = \"#FEE123\", # text colour\n                                  size = 20, # font size\n                                  face = \"bold\"), # bold text\n        plot.subtitle = element_text(colour = \"#FEE123\",\n                                     size = 14),\n        plot.caption = element_text(colour = \"#FEE123\"),\n        axis.text = element_text(colour = \"#FEE123\"),\n        axis.title.x = element_blank(), \n        axis.title.y = element_blank(), \n        axis.text.y = element_blank(),\n        plot.margin = unit(c(1,1,1,1), \"cm\"), \n        panel.background = element_rect(fill = \"#154733\"), \n        panel.grid = element_blank()) \n\n\nggdraw() +\n  draw_plot(p) + \n  draw_image(img, scale = 0.2, hjust = 0.4, vjust = 0.2)\n\n\n\n\n\n\n\nShow the code\nggsave(\"oregon.png\", width = 9, height = 7, units = \"in\")"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Isaac Johnson’s Portfolio",

@@ -1,0 +1,145 @@
+---
+title: "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020"
+author: "Isaac Johnson"
+date: "2023-02-13"
+format: html
+code-fold: true
+code-summary: "Show the code"
+image: "oregon.png"
+editor: visual
+---
+
+## Read in the data and wrangle the data for Oregon
+
+```{r}
+
+#| echo: true
+
+library(ggplot2)
+library(tidytuesdayR)
+library(tidyverse)
+library(cowplot)
+library(magick)
+
+
+data <- tt_load('2020-10-06')
+tournament <- data$tournament 
+
+oregon <- tournament %>%
+  filter(school == "Oregon") %>%
+  select(school, year, full_percent, tourney_finish)
+
+#save locally
+write.csv(tournament, "/Users/isaacjohnson/Documents/Scanner Output/School/Willamette/Communicating with Data 020123/tournament.csv", row.names=FALSE)
+```
+
+## Plot the data
+
+```{r}
+ggplot(oregon, aes(x = year, y = full_percent)) +
+    geom_path() +
+    geom_point() +
+    geom_text(aes(label = paste0(tourney_finish)))
+
+
+```
+
+## Clean up the chart
+
+```{r}
+ggplot(oregon, aes(x = year, y = full_percent)) + 
+  geom_path() + 
+  geom_point() + 
+  geom_text(aes(label = paste0(tourney_finish)), 
+            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),
+            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1))
+```
+
+## More editing the plot
+
+```{r}
+ggplot(oregon, aes(x = year, y = full_percent)) + 
+  geom_path() + 
+  geom_point() + 
+  geom_text(aes(label = paste0(tourney_finish)), 
+            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),
+            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1)) + 
+  labs(title = "Oregon NCAA Tournament History",
+       subtitle = "Total win/loss percentage and end result by year",
+      x = "Year", y = "Total win/loss percentage", 
+      caption = "inspired by @osteobjorn | #TidyTuesday 06-10-2020 | source: FiveThirtyEight")
+
+```
+
+## Add color
+
+```{r}
+ggplot(oregon, aes(x = year, y = full_percent)) + 
+  geom_path(col = "#FEE123") + 
+  geom_point(col = "#FEE123") + 
+  geom_text(aes(label = paste0(tourney_finish)), 
+            col = "white",
+            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),
+            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1)) + 
+  labs(title = "Oregon NCAA Tournament History",
+       subtitle = "Total win/loss percentage and end result by year",
+      x = "Year", y = "Total win/loss percentage", 
+      caption = "inspired by @osteobjorn | #TidyTuesday 06-10-2020 | source: FiveThirtyEight")+
+    theme(plot.background = element_rect(fill = "#154733"), # background colour
+        plot.title = element_text(colour = "#FEE123", # text colour
+                                  size = 20, # font size
+                                  face = "bold"), # bold text
+        plot.subtitle = element_text(colour = "#FEE123",
+                                     size = 14),
+        plot.caption = element_text(colour = "#FEE123"),
+        axis.text = element_text(colour = "#FEE123"),
+        axis.title.x = element_blank(), 
+        axis.title.y = element_blank(), 
+        axis.text.y = element_blank(),
+        plot.margin = unit(c(1,1,1,1), "cm"), 
+        panel.background = element_rect(fill = "#154733"), 
+        panel.grid = element_blank()) 
+```
+
+## Added logo
+
+```{r}
+
+img <- image_read(path = "https://goducks.com/images/uoregon_logo.png")
+
+p <- ggplot(oregon, aes(x = year, y = full_percent)) + 
+  geom_path(col = "#FEE123") + 
+  geom_point(col = "#FEE123") + 
+  geom_text(aes(label = paste0(tourney_finish)), 
+            col = "white",
+            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),
+            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1)) + 
+  labs(title = "Oregon NCAA Tournament History",
+       subtitle = "Total win/loss percentage and end result by year",
+      x = "Year", y = "Total win/loss percentage", 
+      caption = "inspired by @osteobjorn | #TidyTuesday 06-10-2020 | source: FiveThirtyEight")+
+    theme(plot.background = element_rect(fill = "#154733"), # background colour
+        plot.title = element_text(colour = "#FEE123", # text colour
+                                  size = 20, # font size
+                                  face = "bold"), # bold text
+        plot.subtitle = element_text(colour = "#FEE123",
+                                     size = 14),
+        plot.caption = element_text(colour = "#FEE123"),
+        axis.text = element_text(colour = "#FEE123"),
+        axis.title.x = element_blank(), 
+        axis.title.y = element_blank(), 
+        axis.text.y = element_blank(),
+        plot.margin = unit(c(1,1,1,1), "cm"), 
+        panel.background = element_rect(fill = "#154733"), 
+        panel.grid = element_blank()) 
+
+
+ggdraw() +
+  draw_plot(p) + 
+  draw_image(img, scale = 0.2, hjust = 0.4, vjust = 0.2)
+```
+
+```{r}
+
+ggsave("oregon.png", width = 9, height = 7, units = "in")
+```
