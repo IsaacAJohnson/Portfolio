@@ -1,23 +1,25 @@
 ---
-title: "Jesse A. DeBolt"
-about: 
-  template: trestles
-  image: /images/favicon_io_superhero_lite/android-chrome-512x512.png
-  image-shape: rounded
-  image-width: 15em
-  links:
-    - text: LinkedIn
-      href: https://www.linkedin.com/in/jessedebolt
-    - text: GitHub
-      href: https://github.com/jessedebolt
-    - text: Email
-      href: mailto:jessedebolt@comcast.net
-        
+  title: "Isaac Johnson's Portfolio"
+  listing:
+        contents: posts
+        sort: "date desc"
+        type: default
+        categories: true
+  navbar:
+        left:
+            text: Visualization
+            href: Resources.qmd
+  right:
+    links: 
+      - icon: github
+        href: https://github.com/IsaacAJohnson
+      - icon: linkedin
+        href: https://www.linkedin.com/in/isaac-johnson001/
+      - icon: envelope
+        href: mailto:ijohnson2@willamette.edu
 ---
+## Welcome!
 
-
-# Hello!
-Welcome to my portfolio blog. You can see ssome of my recent projects and work examples on the 'Projects' page. If you are looking to hire someone with extensive manufacturing experience and data familiarity, please take a look at my resume by clicking the Resume button up top. This site is very much in progress so check back for updates and new project examples.
 I am excited to share with you some of my progress so far.  I am currently enrolled in a Masters of Data Science program at Willamette University, and looking forward to graduation this August '23! Please take a look around and would love to hear from you. 
 
 
