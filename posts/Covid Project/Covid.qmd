@@ -9,6 +9,8 @@ image: "covid.png"
 editor: visual
 ---
 
+Eat your Veggies!
+
 Prep and load libraries
 
 ```{r, message=FALSE}
