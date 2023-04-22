@@ -1,5 +1,5 @@
 ---
-title: "tidytuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020"
+title: "#TidyTuesday inspired by @osteobjorn | #TidyTuesday 06-10-2020"
 author: "Isaac Johnson"
 date: "2023-02-13"
 format: html
@@ -11,7 +11,7 @@ editor: visual
 
 ## Read in the data and wrangle the data for Oregon
 
-```{r}
+```{r, message=FALSE}
 
 #| echo: true
 
