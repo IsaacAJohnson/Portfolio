@@ -515,3 +515,9 @@ veggie_plotly <- ggplot(kcal_continents_trimmed, aes(x=Vegetal.Products, y=Anima
 ggplotly(veggie_plotly, tooltip = "text")
 
 ```
+
+Save plot
+
+```{r}
+ggsave("covid.png", width = 9, height = 7, units = "in")
+```
