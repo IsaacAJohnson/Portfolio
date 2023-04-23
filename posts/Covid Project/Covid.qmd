@@ -5,7 +5,7 @@ date: "2022-12-01"
 format: html
 code-fold: true
 code-summary: "Show the code"
-image: "covid.png"
+image: "Covid.png"
 editor: visual
 ---
 
