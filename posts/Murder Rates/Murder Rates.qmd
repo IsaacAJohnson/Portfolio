@@ -11,7 +11,7 @@ editor: visual
 
 #Load Library and prep data
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #| message: false
 #| warning: false
 
