@@ -5,18 +5,8 @@
         sort: "date desc"
         type: default
         categories: true
-  navbar:
-        left:
-            text: Visualization
-            href: Resources.qmd
-  right:
-    links: 
-      - icon: github
-        href: https://github.com/IsaacAJohnson
-      - icon: linkedin
-        href: https://www.linkedin.com/in/isaac-johnson001/
-      - icon: envelope
-        href: mailto:ijohnson2@willamette.edu
+
+
 ---
 ## Welcome!
 
