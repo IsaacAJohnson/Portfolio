@@ -5,7 +5,6 @@ project:
 website:
   title: "Isaac Johnson's Portfolio"
   navbar:
-    search: true
     left:
       - href: index.qmd
         text: Home
