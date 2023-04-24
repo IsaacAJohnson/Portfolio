@@ -73,7 +73,7 @@ datatable_table <- datatable(bmi_data_by_age,
                              rownames = FALSE,
                              options = list(pageLength = 10))
 
-print(datatable_table)
+datatable_table
 ```
 
 Add more variables
@@ -138,5 +138,5 @@ datatable_table_complex <- datatable(complex_data_by_age,
                                      rownames = FALSE,
                                      options = list(pageLength = 10))
 
-print(datatable_table_complex)
+datatable_table_complex
 ```

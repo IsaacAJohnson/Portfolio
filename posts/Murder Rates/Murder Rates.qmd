@@ -12,7 +12,8 @@ editor: visual
 #Load Library and prep data
 
 ```{r}
-#| message: FALSE
+#| message: false
+#| warning: false
 
 library(maps)
 library(viridis)
@@ -53,6 +54,7 @@ us_states_map_data <- us_states_shapefile %>%
 
 ```{r}
 #| message: false
+#| warning: false
 
 
 # Create the leaflet map
