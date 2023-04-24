@@ -100,10 +100,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -124,6 +126,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<link href="../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="../../site_libs/tabwid-1.1.3/tabwid.js"></script>
 <script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="../../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="../../site_libs/datatables-binding-0.27/datatables.js"></script>
@@ -163,6 +167,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/IsaacAJohnson"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/isaac-johnson001/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:isaacajohnson@icloud.com"><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -232,7 +256,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"50+"</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AgeGroup) <span class="sc">%&gt;%</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">round</span>(mean_bmi, <span class="at">digits =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>GT table</p>
@@ -247,16 +272,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="st">"Mean BMI"</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt_preview</span>(gt_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#gt::gt_preview(gt_table)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>gt_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="eioernsnov" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nzbamvuulo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#eioernsnov) .gt_table {
+:where(#nzbamvuulo) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -281,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_heading {
+:where(#nzbamvuulo) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -293,12 +319,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_caption {
+:where(#nzbamvuulo) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#eioernsnov) .gt_title {
+:where(#nzbamvuulo) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -310,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#eioernsnov) .gt_subtitle {
+:where(#nzbamvuulo) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -322,13 +348,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#eioernsnov) .gt_bottom_border {
+:where(#nzbamvuulo) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_col_headings {
+:where(#nzbamvuulo) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -343,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_col_heading {
+:where(#nzbamvuulo) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -363,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#eioernsnov) .gt_column_spanner_outer {
+:where(#nzbamvuulo) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -375,15 +401,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#eioernsnov) .gt_column_spanner_outer:first-child {
+:where(#nzbamvuulo) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#eioernsnov) .gt_column_spanner_outer:last-child {
+:where(#nzbamvuulo) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#eioernsnov) .gt_column_spanner {
+:where(#nzbamvuulo) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -395,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#eioernsnov) .gt_group_heading {
+:where(#nzbamvuulo) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -421,7 +447,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#eioernsnov) .gt_empty_group_heading {
+:where(#nzbamvuulo) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -436,15 +462,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#eioernsnov) .gt_from_md > :first-child {
+:where(#nzbamvuulo) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#eioernsnov) .gt_from_md > :last-child {
+:where(#nzbamvuulo) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#eioernsnov) .gt_row {
+:where(#nzbamvuulo) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -463,7 +489,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#eioernsnov) .gt_stub {
+:where(#nzbamvuulo) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -476,7 +502,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#eioernsnov) .gt_stub_row_group {
+:where(#nzbamvuulo) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -490,11 +516,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#eioernsnov) .gt_row_group_first td {
+:where(#nzbamvuulo) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#eioernsnov) .gt_summary_row {
+:where(#nzbamvuulo) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -504,16 +530,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#eioernsnov) .gt_first_summary_row {
+:where(#nzbamvuulo) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_first_summary_row.thick {
+:where(#nzbamvuulo) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#eioernsnov) .gt_last_summary_row {
+:where(#nzbamvuulo) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -523,7 +549,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_grand_summary_row {
+:where(#nzbamvuulo) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -533,7 +559,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#eioernsnov) .gt_first_grand_summary_row {
+:where(#nzbamvuulo) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -543,11 +569,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_striped {
+:where(#nzbamvuulo) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#eioernsnov) .gt_table_body {
+:where(#nzbamvuulo) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -556,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_footnotes {
+:where(#nzbamvuulo) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -570,7 +596,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_footnote {
+:where(#nzbamvuulo) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -579,7 +605,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#eioernsnov) .gt_sourcenotes {
+:where(#nzbamvuulo) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -593,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#eioernsnov) .gt_sourcenote {
+:where(#nzbamvuulo) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -601,89 +627,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#eioernsnov) .gt_left {
+:where(#nzbamvuulo) .gt_left {
   text-align: left;
 }
 
-:where(#eioernsnov) .gt_center {
+:where(#nzbamvuulo) .gt_center {
   text-align: center;
 }
 
-:where(#eioernsnov) .gt_right {
+:where(#nzbamvuulo) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#eioernsnov) .gt_font_normal {
+:where(#nzbamvuulo) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#eioernsnov) .gt_font_bold {
+:where(#nzbamvuulo) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#eioernsnov) .gt_font_italic {
+:where(#nzbamvuulo) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#eioernsnov) .gt_super {
+:where(#nzbamvuulo) .gt_super {
   font-size: 65%;
 }
 
-:where(#eioernsnov) .gt_footnote_marks {
+:where(#nzbamvuulo) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#eioernsnov) .gt_asterisk {
+:where(#nzbamvuulo) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#eioernsnov) .gt_indent_1 {
+:where(#nzbamvuulo) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#eioernsnov) .gt_indent_2 {
+:where(#nzbamvuulo) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#eioernsnov) .gt_indent_3 {
+:where(#nzbamvuulo) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#eioernsnov) .gt_indent_4 {
+:where(#nzbamvuulo) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#eioernsnov) .gt_indent_5 {
+:where(#nzbamvuulo) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 <table class="gt_table">
-  
+  <thead class="gt_header">
+    <tr>
+      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Average BMI by Age Group</td>
+    </tr>
+    
+  </thead>
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="AgeGroup">AgeGroup</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_bmi">mean_bmi</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Age Group">Age Group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mean BMI">Mean BMI</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><th id="stub_1_1" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">1</th>
-<td headers="stub_1_1 AgeGroup" class="gt_row gt_left">18-34</td>
-<td headers="stub_1_1 mean_bmi" class="gt_row gt_right">27.78920</td></tr>
-    <tr><th id="stub_1_2" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">2</th>
-<td headers="stub_1_2 AgeGroup" class="gt_row gt_left">35-49</td>
-<td headers="stub_1_2 mean_bmi" class="gt_row gt_right">29.02937</td></tr>
-    <tr><th id="stub_1_3" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">3</th>
-<td headers="stub_1_3 AgeGroup" class="gt_row gt_left">50+</td>
-<td headers="stub_1_3 mean_bmi" class="gt_row gt_right">29.07508</td></tr>
-    <tr><th id="stub_1_4" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">4</th>
-<td headers="stub_1_4 AgeGroup" class="gt_row gt_left">Under 18</td>
-<td headers="stub_1_4 mean_bmi" class="gt_row gt_right">19.93960</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_left">18-34</td>
+<td headers="mean_bmi" class="gt_row gt_right">28</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_left">35-49</td>
+<td headers="mean_bmi" class="gt_row gt_right">29</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_left">50+</td>
+<td headers="mean_bmi" class="gt_row gt_right">29</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_left">Under 18</td>
+<td headers="mean_bmi" class="gt_row gt_right">20</td></tr>
   </tbody>
   
   
@@ -704,83 +730,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">big.mark =</span> <span class="st">","</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(flextable_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#print(flextable_table)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>flextable_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>a flextable object.
-col_keys: `AgeGroup`, `mean_bmi` 
-header has 1 row(s) 
-body has 4 row(s) 
-original dataset sample: 
-  AgeGroup mean_bmi
-1    18-34 27.78920
-2    35-49 29.02937
-3      50+ 29.07508
-4 Under 18 19.93960</code></pre>
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-90dac720{}.cl-90d75ebe{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-90d8c93e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-90d8c93f{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-90d8d348{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90d8d349{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90d8d352{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90d8d353{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90d8d354{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90d8d35c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-90dac720"><caption style="margin:0pt;text-align:center;border-bottom: 0.00pt solid transparent;border-top: 0.00pt solid transparent;border-left: 0.00pt solid transparent;border-right: 0.00pt solid transparent;padding-top:3pt;padding-bottom:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;"></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-90d8d348"><p class="cl-90d8c93e"><span class="cl-90d75ebe">AgeGroup</span></p></th><th class="cl-90d8d349"><p class="cl-90d8c93f"><span class="cl-90d75ebe">mean_bmi</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-90d8d352"><p class="cl-90d8c93e"><span class="cl-90d75ebe">18-34</span></p></td><td class="cl-90d8d353"><p class="cl-90d8c93f"><span class="cl-90d75ebe">28</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90d8d352"><p class="cl-90d8c93e"><span class="cl-90d75ebe">35-49</span></p></td><td class="cl-90d8d353"><p class="cl-90d8c93f"><span class="cl-90d75ebe">29</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90d8d352"><p class="cl-90d8c93e"><span class="cl-90d75ebe">50+</span></p></td><td class="cl-90d8d353"><p class="cl-90d8c93f"><span class="cl-90d75ebe">29</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90d8d354"><p class="cl-90d8c93e"><span class="cl-90d75ebe">Under 18</span></p></td><td class="cl-90d8d35c"><p class="cl-90d8c93f"><span class="cl-90d75ebe">20</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 <p>DT data table</p>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>datatable_table <span class="ot">&lt;-</span> <span class="fu">datatable</span>(bmi_data_by_age,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">caption =</span> <span class="st">"Average BMI by Age Group"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>datatable_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>datatable_table <span class="ot">&lt;-</span> <span class="fu">datatable</span>(bmi_data_by_age,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">caption =</span> <span class="st">"Average BMI by Age Group"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>datatable_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="htmlwidget-efa1aea5ccbe7e40f183" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-efa1aea5ccbe7e40f183">{"x":{"filter":"none","vertical":false,"caption":"<caption>Average BMI by Age Group<\/caption>","data":[["18-34","35-49","50+","Under 18"],[27.7892037366548,29.0293689320388,29.0750804893754,19.9396036036036]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>AgeGroup<\/th>\n      <th>mean_bmi<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6a7c35a4fb0f42c62e97" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6a7c35a4fb0f42c62e97">{"x":{"filter":"none","vertical":false,"caption":"<caption>Average BMI by Age Group<\/caption>","data":[["18-34","35-49","50+","Under 18"],[28,29,29,20]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>AgeGroup<\/th>\n      <th>mean_bmi<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Add more variables</p>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>complex_data_by_age <span class="ot">&lt;-</span> NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AgeGroup =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"Under 18"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;</span> <span class="dv">35</span> <span class="sc">~</span> <span class="st">"18-34"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&gt;=</span> <span class="dv">35</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"35-49"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"50+"</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Under 18"</span>, <span class="st">"18-34"</span>, <span class="st">"35-49"</span>, <span class="st">"50+"</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AgeGroup) <span class="sc">%&gt;%</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_systolic_BP =</span> <span class="fu">mean</span>(BPSysAve, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_diastolic_BP =</span> <span class="fu">mean</span>(BPDiaAve, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">diabetes_prevalence =</span> <span class="fu">mean</span>(Diabetes <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>complex_data_by_age <span class="ot">&lt;-</span> NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AgeGroup =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"Under 18"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;</span> <span class="dv">35</span> <span class="sc">~</span> <span class="st">"18-34"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&gt;=</span> <span class="dv">35</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"35-49"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    Age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"50+"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  ), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Under 18"</span>, <span class="st">"18-34"</span>, <span class="st">"35-49"</span>, <span class="st">"50+"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AgeGroup) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_systolic_BP =</span> <span class="fu">mean</span>(BPSysAve, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_diastolic_BP =</span> <span class="fu">mean</span>(BPDiaAve, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">diabetes_prevalence =</span> <span class="fu">mean</span>(Diabetes <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">round</span>(mean_bmi, <span class="at">digits =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mean_systolic_BP =</span> <span class="fu">round</span>(mean_systolic_BP, <span class="at">digits =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mean_diastolic_BP =</span> <span class="fu">round</span>(mean_diastolic_BP, <span class="at">digits =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">diabetes_prevalence =</span> <span class="fu">round</span>(diabetes_prevalence, <span class="at">digits =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Updated GT table</p>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gt_table_complex <span class="ot">&lt;-</span> complex_data_by_age <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Health Metrics by Age Group"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">AgeGroup =</span> <span class="st">"Age Group"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="st">"Mean BMI"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_systolic_BP =</span> <span class="st">"Mean Systolic BP"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_diastolic_BP =</span> <span class="st">"Mean Diastolic BP"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">diabetes_prevalence =</span> <span class="st">"Diabetes Prevalence (%)"</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt_preview</span>(gt_table_complex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gt_table_complex <span class="ot">&lt;-</span> complex_data_by_age <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Health Metrics by Age Group"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">AgeGroup =</span> <span class="st">"Age Group"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="st">"Mean BMI"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_systolic_BP =</span> <span class="st">"Mean Systolic BP"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_diastolic_BP =</span> <span class="st">"Mean Diastolic BP"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">diabetes_prevalence =</span> <span class="st">"Diabetes Prevalence (%)"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#gt::gt_preview(gt_table_complex)</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>gt_table_complex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="pbofmardsl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="kvepcgoxdm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#pbofmardsl) .gt_table {
+:where(#kvepcgoxdm) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -805,7 +829,7 @@ original dataset sample:
   border-left-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_heading {
+:where(#kvepcgoxdm) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -817,12 +841,12 @@ original dataset sample:
   border-right-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_caption {
+:where(#kvepcgoxdm) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#pbofmardsl) .gt_title {
+:where(#kvepcgoxdm) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -834,7 +858,7 @@ original dataset sample:
   border-bottom-width: 0;
 }
 
-:where(#pbofmardsl) .gt_subtitle {
+:where(#kvepcgoxdm) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -846,13 +870,13 @@ original dataset sample:
   border-top-width: 0;
 }
 
-:where(#pbofmardsl) .gt_bottom_border {
+:where(#kvepcgoxdm) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_col_headings {
+:where(#kvepcgoxdm) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -867,7 +891,7 @@ original dataset sample:
   border-right-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_col_heading {
+:where(#kvepcgoxdm) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -887,7 +911,7 @@ original dataset sample:
   overflow-x: hidden;
 }
 
-:where(#pbofmardsl) .gt_column_spanner_outer {
+:where(#kvepcgoxdm) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -899,15 +923,15 @@ original dataset sample:
   padding-right: 4px;
 }
 
-:where(#pbofmardsl) .gt_column_spanner_outer:first-child {
+:where(#kvepcgoxdm) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#pbofmardsl) .gt_column_spanner_outer:last-child {
+:where(#kvepcgoxdm) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#pbofmardsl) .gt_column_spanner {
+:where(#kvepcgoxdm) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -919,7 +943,7 @@ original dataset sample:
   width: 100%;
 }
 
-:where(#pbofmardsl) .gt_group_heading {
+:where(#kvepcgoxdm) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -945,7 +969,7 @@ original dataset sample:
   text-align: left;
 }
 
-:where(#pbofmardsl) .gt_empty_group_heading {
+:where(#kvepcgoxdm) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -960,15 +984,15 @@ original dataset sample:
   vertical-align: middle;
 }
 
-:where(#pbofmardsl) .gt_from_md > :first-child {
+:where(#kvepcgoxdm) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#pbofmardsl) .gt_from_md > :last-child {
+:where(#kvepcgoxdm) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#pbofmardsl) .gt_row {
+:where(#kvepcgoxdm) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -987,7 +1011,7 @@ original dataset sample:
   overflow-x: hidden;
 }
 
-:where(#pbofmardsl) .gt_stub {
+:where(#kvepcgoxdm) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1000,7 +1024,7 @@ original dataset sample:
   padding-right: 5px;
 }
 
-:where(#pbofmardsl) .gt_stub_row_group {
+:where(#kvepcgoxdm) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1014,11 +1038,11 @@ original dataset sample:
   vertical-align: top;
 }
 
-:where(#pbofmardsl) .gt_row_group_first td {
+:where(#kvepcgoxdm) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#pbofmardsl) .gt_summary_row {
+:where(#kvepcgoxdm) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1028,16 +1052,16 @@ original dataset sample:
   padding-right: 5px;
 }
 
-:where(#pbofmardsl) .gt_first_summary_row {
+:where(#kvepcgoxdm) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_first_summary_row.thick {
+:where(#kvepcgoxdm) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#pbofmardsl) .gt_last_summary_row {
+:where(#kvepcgoxdm) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1047,7 +1071,7 @@ original dataset sample:
   border-bottom-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_grand_summary_row {
+:where(#kvepcgoxdm) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1057,7 +1081,7 @@ original dataset sample:
   padding-right: 5px;
 }
 
-:where(#pbofmardsl) .gt_first_grand_summary_row {
+:where(#kvepcgoxdm) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1067,11 +1091,11 @@ original dataset sample:
   border-top-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_striped {
+:where(#kvepcgoxdm) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#pbofmardsl) .gt_table_body {
+:where(#kvepcgoxdm) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1080,7 +1104,7 @@ original dataset sample:
   border-bottom-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_footnotes {
+:where(#kvepcgoxdm) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1094,7 +1118,7 @@ original dataset sample:
   border-right-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_footnote {
+:where(#kvepcgoxdm) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1103,7 +1127,7 @@ original dataset sample:
   padding-right: 5px;
 }
 
-:where(#pbofmardsl) .gt_sourcenotes {
+:where(#kvepcgoxdm) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1117,7 +1141,7 @@ original dataset sample:
   border-right-color: #D3D3D3;
 }
 
-:where(#pbofmardsl) .gt_sourcenote {
+:where(#kvepcgoxdm) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1125,104 +1149,104 @@ original dataset sample:
   padding-right: 5px;
 }
 
-:where(#pbofmardsl) .gt_left {
+:where(#kvepcgoxdm) .gt_left {
   text-align: left;
 }
 
-:where(#pbofmardsl) .gt_center {
+:where(#kvepcgoxdm) .gt_center {
   text-align: center;
 }
 
-:where(#pbofmardsl) .gt_right {
+:where(#kvepcgoxdm) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#pbofmardsl) .gt_font_normal {
+:where(#kvepcgoxdm) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#pbofmardsl) .gt_font_bold {
+:where(#kvepcgoxdm) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#pbofmardsl) .gt_font_italic {
+:where(#kvepcgoxdm) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#pbofmardsl) .gt_super {
+:where(#kvepcgoxdm) .gt_super {
   font-size: 65%;
 }
 
-:where(#pbofmardsl) .gt_footnote_marks {
+:where(#kvepcgoxdm) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#pbofmardsl) .gt_asterisk {
+:where(#kvepcgoxdm) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#pbofmardsl) .gt_indent_1 {
+:where(#kvepcgoxdm) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#pbofmardsl) .gt_indent_2 {
+:where(#kvepcgoxdm) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#pbofmardsl) .gt_indent_3 {
+:where(#kvepcgoxdm) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#pbofmardsl) .gt_indent_4 {
+:where(#kvepcgoxdm) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#pbofmardsl) .gt_indent_5 {
+:where(#kvepcgoxdm) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 <table class="gt_table">
-  
+  <thead class="gt_header">
+    <tr>
+      <td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Health Metrics by Age Group</td>
+    </tr>
+    
+  </thead>
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="AgeGroup">AgeGroup</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_bmi">mean_bmi</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_systolic_BP">mean_systolic_BP</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean_diastolic_BP">mean_diastolic_BP</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="diabetes_prevalence">diabetes_prevalence</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Age Group">Age Group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mean BMI">Mean BMI</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mean Systolic BP">Mean Systolic BP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mean Diastolic BP">Mean Diastolic BP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Diabetes Prevalence (%)">Diabetes Prevalence (%)</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><th id="stub_1_1" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">1</th>
-<td headers="stub_1_1 AgeGroup" class="gt_row gt_left">Under 18</td>
-<td headers="stub_1_1 mean_bmi" class="gt_row gt_right">19.93960</td>
-<td headers="stub_1_1 mean_systolic_BP" class="gt_row gt_right">104.3848</td>
-<td headers="stub_1_1 mean_diastolic_BP" class="gt_row gt_right">54.60773</td>
-<td headers="stub_1_1 diabetes_prevalence" class="gt_row gt_right">0.714586</td></tr>
-    <tr><th id="stub_1_2" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">2</th>
-<td headers="stub_1_2 AgeGroup" class="gt_row gt_left">18-34</td>
-<td headers="stub_1_2 mean_bmi" class="gt_row gt_right">27.78920</td>
-<td headers="stub_1_2 mean_systolic_BP" class="gt_row gt_right">113.2374</td>
-<td headers="stub_1_2 mean_diastolic_BP" class="gt_row gt_right">67.26446</td>
-<td headers="stub_1_2 diabetes_prevalence" class="gt_row gt_right">1.279788</td></tr>
-    <tr><th id="stub_1_3" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">3</th>
-<td headers="stub_1_3 AgeGroup" class="gt_row gt_left">35-49</td>
-<td headers="stub_1_3 mean_bmi" class="gt_row gt_right">29.02937</td>
-<td headers="stub_1_3 mean_systolic_BP" class="gt_row gt_right">117.8523</td>
-<td headers="stub_1_3 mean_diastolic_BP" class="gt_row gt_right">73.25816</td>
-<td headers="stub_1_3 diabetes_prevalence" class="gt_row gt_right">5.888031</td></tr>
-    <tr><th id="stub_1_4" scope="row" class="gt_row gt_right gt_stub" style="font-family: Courier;">4</th>
-<td headers="stub_1_4 AgeGroup" class="gt_row gt_left">50+</td>
-<td headers="stub_1_4 mean_bmi" class="gt_row gt_right">29.07508</td>
-<td headers="stub_1_4 mean_systolic_BP" class="gt_row gt_right">127.9862</td>
-<td headers="stub_1_4 mean_diastolic_BP" class="gt_row gt_right">69.55237</td>
-<td headers="stub_1_4 diabetes_prevalence" class="gt_row gt_right">18.847501</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_center">Under 18</td>
+<td headers="mean_bmi" class="gt_row gt_right">20</td>
+<td headers="mean_systolic_BP" class="gt_row gt_right">104</td>
+<td headers="mean_diastolic_BP" class="gt_row gt_right">55</td>
+<td headers="diabetes_prevalence" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_center">18-34</td>
+<td headers="mean_bmi" class="gt_row gt_right">28</td>
+<td headers="mean_systolic_BP" class="gt_row gt_right">113</td>
+<td headers="mean_diastolic_BP" class="gt_row gt_right">67</td>
+<td headers="diabetes_prevalence" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_center">35-49</td>
+<td headers="mean_bmi" class="gt_row gt_right">29</td>
+<td headers="mean_systolic_BP" class="gt_row gt_right">118</td>
+<td headers="mean_diastolic_BP" class="gt_row gt_right">73</td>
+<td headers="diabetes_prevalence" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="AgeGroup" class="gt_row gt_center">50+</td>
+<td headers="mean_bmi" class="gt_row gt_right">29</td>
+<td headers="mean_systolic_BP" class="gt_row gt_right">128</td>
+<td headers="mean_diastolic_BP" class="gt_row gt_right">70</td>
+<td headers="diabetes_prevalence" class="gt_row gt_right">19</td></tr>
   </tbody>
   
   
@@ -1234,49 +1258,42 @@ original dataset sample:
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flextable_table_complex <span class="ot">&lt;-</span> complex_data_by_age <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_caption</span>(<span class="st">"Health Metrics by Age Group"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colformat_num</span>(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">j =</span> <span class="fu">c</span>(<span class="st">"mean_bmi"</span>, <span class="st">"mean_systolic_BP"</span>, <span class="st">"mean_diastolic_BP"</span>, <span class="st">"diabetes_prevalence"</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">big.mark =</span> <span class="st">","</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(flextable_table_complex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flextable_table_complex <span class="ot">&lt;-</span> complex_data_by_age <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_caption</span>(<span class="st">"Health Metrics by Age Group"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colformat_num</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">j =</span> <span class="fu">c</span>(<span class="st">"mean_bmi"</span>, <span class="st">"mean_systolic_BP"</span>, <span class="st">"mean_diastolic_BP"</span>, <span class="st">"diabetes_prevalence"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">big.mark =</span> <span class="st">","</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#print(flextable_table_complex)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>flextable_table_complex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>a flextable object.
-col_keys: `AgeGroup`, `mean_bmi`, `mean_systolic_BP`, `mean_diastolic_BP`, `diabetes_prevalence` 
-header has 1 row(s) 
-body has 4 row(s) 
-original dataset sample: 
-  AgeGroup mean_bmi mean_systolic_BP mean_diastolic_BP diabetes_prevalence
-1 Under 18 19.93960         104.3848          54.60773            0.714586
-2    18-34 27.78920         113.2374          67.26446            1.279788
-3    35-49 29.02937         117.8523          73.25816            5.888031
-4      50+ 29.07508         127.9862          69.55237           18.847501</code></pre>
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-90ed3bd0{}.cl-90ea4ee8{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-90eb89ac{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-90eb89b6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-90eb9154{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90eb9155{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90eb915e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90eb915f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90eb9168{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90eb9169{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-90ed3bd0"><caption style="margin:0pt;text-align:center;border-bottom: 0.00pt solid transparent;border-top: 0.00pt solid transparent;border-left: 0.00pt solid transparent;border-right: 0.00pt solid transparent;padding-top:3pt;padding-bottom:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;"></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-90eb9154"><p class="cl-90eb89ac"><span class="cl-90ea4ee8">AgeGroup</span></p></th><th class="cl-90eb9155"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">mean_bmi</span></p></th><th class="cl-90eb9155"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">mean_systolic_BP</span></p></th><th class="cl-90eb9155"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">mean_diastolic_BP</span></p></th><th class="cl-90eb9155"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">diabetes_prevalence</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-90eb915e"><p class="cl-90eb89ac"><span class="cl-90ea4ee8">Under 18</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">20</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">104</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">55</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90eb915e"><p class="cl-90eb89ac"><span class="cl-90ea4ee8">18-34</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">28</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">113</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">67</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90eb915e"><p class="cl-90eb89ac"><span class="cl-90ea4ee8">35-49</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">29</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">118</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">73</span></p></td><td class="cl-90eb915f"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90eb9168"><p class="cl-90eb89ac"><span class="cl-90ea4ee8">50+</span></p></td><td class="cl-90eb9169"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">29</span></p></td><td class="cl-90eb9169"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">128</span></p></td><td class="cl-90eb9169"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">70</span></p></td><td class="cl-90eb9169"><p class="cl-90eb89b6"><span class="cl-90ea4ee8">19</span></p></td></tr></tbody></table></div>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#save_as_image(x = flextable_table_complex, path = "/Users/isaacjohnson/Willamette/Portfolio/posts/Tables/Tables.png")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#save_as_image(x = flextable_table_complex, path = "/Users/isaacjohnson/Willamette/Portfolio/posts/Tables/Tables.png")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Updated DT data table</p>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>datatable_table_complex <span class="ot">&lt;-</span> <span class="fu">datatable</span>(complex_data_by_age,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">caption =</span> <span class="st">"Health Metrics by Age Group"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>datatable_table_complex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>datatable_table_complex <span class="ot">&lt;-</span> <span class="fu">datatable</span>(complex_data_by_age,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">caption =</span> <span class="st">"Health Metrics by Age Group"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>datatable_table_complex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
-<div id="htmlwidget-72cbc8b62bb4da7231c5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-72cbc8b62bb4da7231c5">{"x":{"filter":"none","vertical":false,"caption":"<caption>Health Metrics by Age Group<\/caption>","data":[["Under 18","18-34","35-49","50+"],[19.9396036036036,27.7892037366548,29.0293689320388,29.0750804893754],[104.384843982169,113.237373737374,117.852335509794,127.986166007905],[54.6077265973254,67.2644628099174,73.258161727775,69.552371541502],[0.7145859604876,1.27978817299206,5.88803088803089,18.8475007959249]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>AgeGroup<\/th>\n      <th>mean_bmi<\/th>\n      <th>mean_systolic_BP<\/th>\n      <th>mean_diastolic_BP<\/th>\n      <th>diabetes_prevalence<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-833b5dccaab983e9996a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-833b5dccaab983e9996a">{"x":{"filter":"none","vertical":false,"caption":"<caption>Health Metrics by Age Group<\/caption>","data":[["Under 18","18-34","35-49","50+"],[20,28,29,29],[104,113,118,128],[55,67,73,70],[1,1,6,19]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>AgeGroup<\/th>\n      <th>mean_bmi<\/th>\n      <th>mean_systolic_BP<\/th>\n      <th>mean_diastolic_BP<\/th>\n      <th>diabetes_prevalence<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -1303,6 +1320,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
