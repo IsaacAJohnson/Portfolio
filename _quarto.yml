@@ -5,10 +5,18 @@ project:
 website:
   title: "Isaac Johnson's Portfolio"
   navbar:
+    search: true
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+    right: 
+      - icon: github
+        href: https://github.com/IsaacAJohnson
+      - icon: linkedin
+        href: https://www.linkedin.com/in/isaac-johnson001/
+      - icon: envelope
+        href: mailto:isaacajohnson@icloud.com
 
 format:
   html:
