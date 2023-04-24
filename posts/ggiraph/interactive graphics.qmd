@@ -1,5 +1,5 @@
 ---
-title: "ggiraph and leaflet"
+title: "ggiraph"
 author: "Isaac Johnson"
 date: "2023-04-02"
 format: html
@@ -15,7 +15,6 @@ editor: visual
 #| message: false
 
 library(ggiraph)
-library(leaflet)
 library(htmlwidgets)
 library(dplyr)
 library(ggplot2)
@@ -64,12 +63,33 @@ scatter_plot_interactive
 Save scatterplot html
 
 ```{r}
-htmlwidgets::saveWidget(scatter_plot_interactive, "interactive_scatter_plot.html")
+#htmlwidgets::saveWidget(scatter_plot_interactive, "interactive_scatter_plot.html")
 ```
 
 Diabetes Prevalence and Mean BMI
 
 ```{r}
+#added more variables
+complex_data_by_age <- NHANES %>%
+  mutate(AgeGroup = factor(case_when(
+    Age < 18 ~ "Under 18",
+    Age >= 18 & Age < 35 ~ "18-34",
+    Age >= 35 & Age < 50 ~ "35-49",
+    Age >= 50 ~ "50+"
+  ), levels = c("Under 18", "18-34", "35-49", "50+"))) %>%
+  group_by(AgeGroup) %>%
+  summarize(
+    mean_bmi = mean(BMI, na.rm = TRUE),
+    mean_systolic_BP = mean(BPSysAve, na.rm = TRUE),
+    mean_diastolic_BP = mean(BPDiaAve, na.rm = TRUE),
+    diabetes_prevalence = mean(Diabetes == "Yes", na.rm = TRUE) * 100
+  )
+
+# Prepare the summary data for ggiraph
+complex_data_long <- complex_data_by_age %>%
+  gather(variable, value, -AgeGroup) %>%
+  mutate(label = round(value, 2))
+
 # Create the first ggplot object for Diabetes prevalence and Mean BMI
 gg1 <- ggplot(data = complex_data_long %>% filter(variable %in% c("diabetes_prevalence", "mean_bmi")), 
               aes(x = AgeGroup, y = value, fill = variable, tooltip = label)) +
