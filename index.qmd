@@ -5,7 +5,10 @@
         sort: "date desc"
         type: default
         categories: true
-
+  navbar:
+        left:
+            text: Visualization
+            href: Resources.qmd
 
 ---
 ## Welcome!
