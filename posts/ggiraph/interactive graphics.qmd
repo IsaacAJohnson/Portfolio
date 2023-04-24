@@ -1,0 +1,121 @@
+---
+title: "ggiraph and leaflet"
+author: "Isaac Johnson"
+date: "2023-04-02"
+format: html
+code-fold: true
+code-summary: "Show the code"
+image: "interactive.png"
+editor: visual
+---
+
+## Load libraries and prepare data
+
+```{r}
+#| message: false
+
+library(ggiraph)
+library(leaflet)
+library(htmlwidgets)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
+library(htmltools)
+library(NHANES)
+
+data(NHANES)
+
+NHANES_subset <- NHANES %>%
+  filter(!is.na(Diabetes), !is.na(PhysActive), !is.na(BMI), !is.na(Age)) %>%
+  mutate(Diabetes = ifelse(Diabetes == "Yes", "Yes", "No"),
+         PhysActive = ifelse(PhysActive == "Yes", "Yes", "No")) %>%
+  mutate(Diabetes = as.factor(Diabetes),
+         PhysActive = as.factor(PhysActive)) %>%
+    select(c(Diabetes, BMI, Age, PhysActive))
+```
+
+ggiraph
+
+```{r}
+scatter_plot <- ggplot(NHANES_subset) +
+  geom_point_interactive(
+    aes(x = BMI, y = Age, color = Diabetes, shape = PhysActive, tooltip = paste("Diabetes:", Diabetes, "<br>Physically Active:", PhysActive, "<br>BMI:", round(BMI, 1), "<br>Age:", Age)),
+    size = 2,
+    alpha = 0.6
+  ) +
+  scale_color_manual(values = c("#FF5964", "#35A7FF")) +
+  labs(
+    title = "Scatter Plot of Age vs BMI by Diabetes Status and Physical Activity",
+    x = "BMI",
+    y = "Age",
+    color = "Diabetes Status",
+    shape = "Physically Active"
+  ) +
+  theme_minimal()
+
+# Save the plot as a png file
+#ggsave(filename = "interactive.png", plot = scatter_plot, width = 10, height = 6, dpi = 300)
+
+scatter_plot_interactive <- girafe(code = print(scatter_plot), width_svg = 8, height_svg = 5)
+scatter_plot_interactive
+
+```
+
+Save scatterplot html
+
+```{r}
+htmlwidgets::saveWidget(scatter_plot_interactive, "interactive_scatter_plot.html")
+```
+
+Diabetes Prevalence and Mean BMI
+
+```{r}
+# Create the first ggplot object for Diabetes prevalence and Mean BMI
+gg1 <- ggplot(data = complex_data_long %>% filter(variable %in% c("diabetes_prevalence", "mean_bmi")), 
+              aes(x = AgeGroup, y = value, fill = variable, tooltip = label)) +
+  geom_bar_interactive(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1", name = "Health Metric") +
+  labs(title = "Diabetes Prevalence and Mean BMI by Age Group", x = "Age Group", y = "Value") +
+  theme(legend.position = "bottom")
+
+# Create the second ggplot object for Mean Diastolic BP and Mean Systolic BP
+gg2 <- ggplot(data = complex_data_long %>% filter(variable %in% c("mean_diastolic_BP", "mean_systolic_BP")), 
+              aes(x = AgeGroup, y = value, fill = variable, tooltip = label)) +
+  geom_bar_interactive(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1", name = "Health Metric") +
+  labs(title = "Mean Diastolic and Systolic BP by Age Group", x = "Age Group", y = "Value") +
+  theme(legend.position = "bottom")
+```
+
+ggiraph Vertically
+
+```{r}
+# Create the ggiraph objects with larger dimensions
+giraph1 <- ggiraph(code = print(gg1), width_svg = 8, height_svg = 5)
+giraph2 <- ggiraph(code = print(gg2), width_svg = 8, height_svg = 5)
+
+# Arrange the ggiraph objects vertically in a single column
+html_output <- tagList(
+  tags$head(tags$style(HTML("
+    .girafe-container {
+      width: 800px !important;
+      height: 500px !important;
+    }
+    .girafe-container > svg {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  "))),
+  tags$div(style = "display:block;", giraph1),
+  tags$div(style = "display:block;", giraph2)
+)
+
+# Save the output as an HTML file
+save_html(html_output, "vertical_ggiraph.html")
+
+# Display the vertical ggiraph plots in the RStudio viewer or a web browser
+html_output
+
+```

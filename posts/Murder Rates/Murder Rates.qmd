@@ -5,6 +5,7 @@ date: "2023-23-04"
 format: html
 code-fold: true
 code-summary: "Show the code"
+image: "murder_rates.png"
 editor: visual
 ---
 

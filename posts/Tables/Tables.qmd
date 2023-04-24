@@ -1,0 +1,142 @@
+---
+title: "Tables NHANES"
+author: "Isaac Johnson"
+date: "2023-04-01"
+format: html
+code-fold: true
+code-summary: "Show the code"
+image: "Tables.png"
+editor: visual
+---
+
+Load libraries and data
+
+```{r}
+#| message: false
+library(gt)
+library(flextable)
+library(DT)
+library(tidyverse)
+library(NHANES)
+
+data(NHANES)
+```
+
+Create a summary of BMI by age group
+
+```{r}
+bmi_data_by_age <- NHANES %>%
+  mutate(AgeGroup = case_when(
+    Age < 18 ~ "Under 18",
+    Age >= 18 & Age < 35 ~ "18-34",
+    Age >= 35 & Age < 50 ~ "35-49",
+    Age >= 50 ~ "50+"
+  )) %>%
+  group_by(AgeGroup) %>%
+  summarize(mean_bmi = mean(BMI, na.rm = TRUE))
+```
+
+GT table
+
+```{r}
+gt_table <- bmi_data_by_age %>%
+  gt() %>%
+  tab_header(title = "Average BMI by Age Group") %>%
+  cols_label(
+    AgeGroup = "Age Group",
+    mean_bmi = "Mean BMI"
+  )
+
+gt::gt_preview(gt_table)
+```
+
+Flextable
+
+```{r}
+flextable_table <- bmi_data_by_age %>%
+  flextable() %>%
+  set_caption("Average BMI by Age Group") %>%
+  colformat_num(
+    j = "mean_bmi",
+    digits = 2,
+    big.mark = ","
+  )
+
+print(flextable_table)
+```
+
+DT data table
+
+```{r}
+datatable_table <- datatable(bmi_data_by_age,
+                             caption = "Average BMI by Age Group",
+                             rownames = FALSE,
+                             options = list(pageLength = 10))
+
+print(datatable_table)
+```
+
+Add more variables
+
+```{r}
+complex_data_by_age <- NHANES %>%
+  mutate(AgeGroup = factor(case_when(
+    Age < 18 ~ "Under 18",
+    Age >= 18 & Age < 35 ~ "18-34",
+    Age >= 35 & Age < 50 ~ "35-49",
+    Age >= 50 ~ "50+"
+  ), levels = c("Under 18", "18-34", "35-49", "50+"))) %>%
+  group_by(AgeGroup) %>%
+  summarize(
+    mean_bmi = mean(BMI, na.rm = TRUE),
+    mean_systolic_BP = mean(BPSysAve, na.rm = TRUE),
+    mean_diastolic_BP = mean(BPDiaAve, na.rm = TRUE),
+    diabetes_prevalence = mean(Diabetes == "Yes", na.rm = TRUE) * 100
+  )
+
+```
+
+Updated GT table
+
+```{r}
+gt_table_complex <- complex_data_by_age %>%
+  gt() %>%
+  tab_header(title = "Health Metrics by Age Group") %>%
+  cols_label(
+    AgeGroup = "Age Group",
+    mean_bmi = "Mean BMI",
+    mean_systolic_BP = "Mean Systolic BP",
+    mean_diastolic_BP = "Mean Diastolic BP",
+    diabetes_prevalence = "Diabetes Prevalence (%)"
+  )
+
+gt::gt_preview(gt_table_complex)
+```
+
+Updated Flextable
+
+```{r}
+flextable_table_complex <- complex_data_by_age %>%
+  flextable() %>%
+  set_caption("Health Metrics by Age Group") %>%
+  colformat_num(
+    j = c("mean_bmi", "mean_systolic_BP", "mean_diastolic_BP", "diabetes_prevalence"),
+    digits = 2,
+    big.mark = ","
+  )
+
+print(flextable_table_complex)
+
+#save_as_image(x = flextable_table_complex, path = "/Users/isaacjohnson/Willamette/Portfolio/posts/Tables/Tables.png")
+```
+
+Updated DT data table
+
+```{r}
+datatable_table_complex <- datatable(complex_data_by_age,
+                                     caption = "Health Metrics by Age Group",
+                                     rownames = FALSE,
+                                     options = list(pageLength = 10))
+
+print(datatable_table_complex)
+```
