@@ -1,0 +1,83 @@
+---
+title: "Murder Rates"
+author: "Isaac Johnson"
+date: "2023-23-04"
+format: html
+code-fold: true
+code-summary: "Show the code"
+editor: visual
+---
+
+#Load Library and prep data
+
+```{r}
+#| message: FALSE
+
+library(maps)
+library(viridis)
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(tigris)
+
+# Load the USArrests dataset
+data(USArrests)
+
+# Prepare the data for leaflet
+arrests_data <- USArrests %>%
+  rownames_to_column(var = "state") %>%
+  mutate(state = tolower(state))
+
+# Load the US states map data
+us_states_map <- map_data("state")
+
+# Define color palette
+color_pal <- colorBin(viridis_pal()(5), domain = arrests_data$Murder, bins = 5)
+
+# Join the US states map data with the arrests data
+us_states_map_data <- us_states_map %>%
+  left_join(arrests_data, by = c("region" = "state"))
+
+# Load the US states shapefile data
+us_states_shapefile <- states(class = "sf", resolution = "20m") %>%
+  st_transform(4326) %>%
+  mutate(state = tolower(NAME))
+
+# Join the US states shapefile data with the arrests data
+us_states_map_data <- us_states_shapefile %>%
+  left_join(arrests_data, by = c("state" = "state"))
+```
+
+#Create Leaflet Map
+
+```{r}
+#| message: false
+
+
+# Create the leaflet map
+leaflet_map <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  addPolygons(
+    data = us_states_map_data,
+    group = "states",
+    fillColor = ~color_pal(Murder),
+    color = "#BDBDC3",
+    fillOpacity = 0.7,
+    weight = 1,
+    label = ~paste0(NAME, ": ", Murder, " murders per 100,000"),
+    labelOptions = labelOptions(direction = "auto")
+  ) %>%
+  addLegend(
+    pal = color_pal,
+    values = arrests_data$Murder,
+    title = "Murders per 100,000",
+    position = "bottomright",
+    opacity = 0.7,
+    labFormat = labelFormat(prefix = ""),
+    labels = c("Low", "Medium-Low", "Medium", "Medium-High", "High")
+  )
+
+# Display the leaflet map
+leaflet_map
+
+```
