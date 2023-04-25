@@ -9,6 +9,10 @@ image: "Covid.png"
 editor: visual
 ---
 
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
 Eat your Veggies!
 
 Prep and load libraries

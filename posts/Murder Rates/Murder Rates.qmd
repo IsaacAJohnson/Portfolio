@@ -9,6 +9,11 @@ image: "murder_rates.png"
 editor: visual
 ---
 
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+
+```
+
 Load Library and prep data
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
