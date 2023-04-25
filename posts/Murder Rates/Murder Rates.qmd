@@ -9,7 +9,7 @@ image: "murder_rates.png"
 editor: visual
 ---
 
-#Load Library and prep data
+Load Library and prep data
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
 #| message: false
@@ -50,7 +50,7 @@ us_states_map_data <- us_states_shapefile %>%
   left_join(arrests_data, by = c("state" = "state"))
 ```
 
-#Create Leaflet Map
+Create Leaflet Map
 
 ```{r}
 #| message: false
