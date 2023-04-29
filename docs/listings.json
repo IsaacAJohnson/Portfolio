@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/presentation/presentation.html",
       "/posts/Murder Rates/Murder Rates.html",
       "/posts/ggiraph/interactive graphics.html",
       "/posts/Tables/Tables.html",

@@ -70,6 +70,76 @@
     "text": "Added logo\n\n\nShow the code\nimg <- image_read(path = \"https://goducks.com/images/uoregon_logo.png\")\n\np <- ggplot(oregon, aes(x = year, y = full_percent)) + \n  geom_path(col = \"#FEE123\") + \n  geom_point(col = \"#FEE123\") + \n  geom_text(aes(label = paste0(tourney_finish)), \n            col = \"white\",\n            nudge_y = c(2, 2, -2, 2, -1, -2, 2, -2, 2, 0, -2, 1.5, -2, .5),\n            nudge_x = c(0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0.5, 0, -1)) + \n  labs(title = \"Oregon NCAA Tournament History\",\n       subtitle = \"Total win/loss percentage and end result by year\",\n      x = \"Year\", y = \"Total win/loss percentage\", \n      caption = \"inspired by @osteobjorn | #TidyTuesday 06-10-2020 | source: FiveThirtyEight\")+\n    theme(plot.background = element_rect(fill = \"#154733\"), # background colour\n        plot.title = element_text(colour = \"#FEE123\", # text colour\n                                  size = 20, # font size\n                                  face = \"bold\"), # bold text\n        plot.subtitle = element_text(colour = \"#FEE123\",\n                                     size = 14),\n        plot.caption = element_text(colour = \"#FEE123\"),\n        axis.text = element_text(colour = \"#FEE123\"),\n        axis.title.x = element_blank(), \n        axis.title.y = element_blank(), \n        axis.text.y = element_blank(),\n        plot.margin = unit(c(1,1,1,1), \"cm\"), \n        panel.background = element_rect(fill = \"#154733\"), \n        panel.grid = element_blank()) \n\n\nggdraw() +\n  draw_plot(p) + \n  draw_image(img, scale = 0.2, hjust = 0.4, vjust = 0.2)\n\n\n\n\n\n\n\nShow the code\nggsave(\"oregon.png\", width = 9, height = 7, units = \"in\")"
   },
   {
+    "objectID": "posts/presentation/presentation.html#why-data-science",
+    "href": "posts/presentation/presentation.html#why-data-science",
+    "title": "Data Science Portfolio",
+    "section": "Why Data Science?",
+    "text": "Why Data Science?\n\nI am passionate about using the data effectively\nWant to do something that I am interested in\nI have always been a logical thinker\n\nhave excelled at math and computers\n\nHave ability to effectively communicate complex ideas simply"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#what-am-i-learning",
+    "href": "posts/presentation/presentation.html#what-am-i-learning",
+    "title": "Data Science Portfolio",
+    "section": "What am I learning?",
+    "text": "What am I learning?\n\nI have taken classes in:\n\nFoundations of Data Science in R\nData Visualization in R\nData Engineering in MySQL"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#what-am-i-learning-1",
+    "href": "posts/presentation/presentation.html#what-am-i-learning-1",
+    "title": "Data Science Portfolio",
+    "section": "What am I learning?",
+    "text": "What am I learning?\n\nI have taken classes in:\n\nCommunicating with Data\nMachine Learning in R\nSurvival Analysis in R"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#what-will-i-learn-next",
+    "href": "posts/presentation/presentation.html#what-will-i-learn-next",
+    "title": "Data Science Portfolio",
+    "section": "What will I learn next",
+    "text": "What will I learn next\n\nData Ethics\nPython\nMaster’s Capstone project\n\nWill graduate August 2023!"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#work-examples",
+    "href": "posts/presentation/presentation.html#work-examples",
+    "title": "Data Science Portfolio",
+    "section": "Work Examples",
+    "text": "Work Examples"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#interactive-visualizations-with-leaflet",
+    "href": "posts/presentation/presentation.html#interactive-visualizations-with-leaflet",
+    "title": "Data Science Portfolio",
+    "section": "Interactive Visualizations with Leaflet",
+    "text": "Interactive Visualizations with Leaflet"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#interactive-visualizations-with-ggiraph",
+    "href": "posts/presentation/presentation.html#interactive-visualizations-with-ggiraph",
+    "title": "Data Science Portfolio",
+    "section": "Interactive Visualizations with ggiraph",
+    "text": "Interactive Visualizations with ggiraph"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#interactive-visualizations-with-dt-table",
+    "href": "posts/presentation/presentation.html#interactive-visualizations-with-dt-table",
+    "title": "Data Science Portfolio",
+    "section": "Interactive Visualizations with DT table",
+    "text": "Interactive Visualizations with DT table"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#interactive-visualizations-with-plotly",
+    "href": "posts/presentation/presentation.html#interactive-visualizations-with-plotly",
+    "title": "Data Science Portfolio",
+    "section": "Interactive Visualizations with plotly",
+    "text": "Interactive Visualizations with plotly"
+  },
+  {
+    "objectID": "posts/presentation/presentation.html#thank-you",
+    "href": "posts/presentation/presentation.html#thank-you",
+    "title": "Data Science Portfolio",
+    "section": "Thank you!",
+    "text": "Thank you!\n\nFor more to come, please check out my wesbite\nPortfolio website: https://isaacajohnson.github.io/Portfolio/"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Isaac Johnson’s Portfolio",
