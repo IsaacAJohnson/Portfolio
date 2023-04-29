@@ -1,0 +1,90 @@
+---
+title: "Data Science Portfolio"
+author: "Isaac Johnson"
+format: 
+   revealjs:
+     multiplex: true
+     preview-links: true
+     theme: moon
+     scrollable: true
+     html-math-method: katex
+     incremental: true
+     slide-number: c/t
+     transition: slide
+     code-fold: true
+     code-tools: true
+---
+
+# About me {transition="slide"}
+- Bachelor's degree Business Administration and Marketing from CSUF
+- Currently completing Master's in Data Science from Willamette University
+- 25 years experience in Sales
+    - over 20 years experience working in healthcare
+
+# About me {transition="slide"}
+- worked as a medical and pharmaceutical representative
+    - learned to use data to be more effective in my roles
+    - experience effectively communicating through data to stakeholders
+    - experience in all aspects of healthcare
+        -disease states, medical terminology, medications
+        -effectively communicating info from clinical studies
+
+## Why Data Science? {transition="slide"}
+- I am passionate about using the data effectively
+- Want to do something that I am interested in
+- I have always been a logical thinker
+    - have excelled at math and computers
+- Have ability to effectively communicate complex ideas simply
+
+## What am I learning? {transition="slide"}
+- I have taken classes in:
+    - Foundations of Data Science in R
+    - Data Visualization in R
+    - Data Engineering in MySQL
+
+## What am I learning? {transition="slide"}
+- I have taken classes in:
+    - Communicating with Data
+    - Machine Learning in R
+    - Survival Analysis in R
+    
+## What will I learn next {transition="slide"}
+- Data Ethics
+- Python
+- Master's Capstone project
+    - Will graduate August 2023!
+
+## Work Examples {transition="slide"}
+
+## Interactive Visualizations with Leaflet
+<iframe 
+  width="1000" 
+  height="500" 
+  src="images/murderleaflet.html">
+</iframe>
+
+## Interactive Visualizations with ggiraph
+<iframe 
+  width="1000" 
+  height="500" 
+  src="images/interactive_scatter_plot.html">
+</iframe>
+
+## Interactive Visualizations with DT table
+<iframe 
+  width="1000" 
+  height="500" 
+  src="images/datatable_table_complex.html">
+</iframe>
+
+## Interactive Visualizations with plotly
+<iframe 
+  width="1000" 
+  height="500" 
+  src="images/covid.html">
+</iframe>
+
+## Thank you! 
+- For more to come, please check out my wesbite
+
+    Portfolio website: [https://isaacajohnson.github.io/Portfolio/](https://isaacajohnson.github.io/Portfolio/)
