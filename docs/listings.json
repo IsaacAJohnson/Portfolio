@@ -2,12 +2,12 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/presentation/presentation.html",
-      "/posts/Murder Rates/Murder Rates.html",
       "/posts/Coronary Heart Disease - Python/CHD Final Report.html",
       "/posts/ggiraph/interactive graphics.html",
       "/posts/Tables/Tables.html",
+      "/posts/Presentation/presentation.html",
       "/posts/ducks_tidy_tuesday/index.html",
+      "/posts/Murder Rates/Murder Rates.html",
       "/posts/Covid Project/Covid.html"
     ]
   }
