@@ -727,6 +727,6 @@ In conclusion, our project demonstrates the feasibility and potential of using m
 
 ## **Appendix: List of Contributors**
 
-1.  Hans LehnDorff - [LinkedIn](www.linkedin.com/in/hans-lehndorff/)
-2.  Isaac Johnson - [LinkedIn](www.linkedin.com/in/isaacajohnson)
-3.  Jesse Debolt - [LinkedIn](www.linkedin.com/in/jessedebolt/)
+1.  Hans LehnDorff - [LinkedIn](https://www.linkedin.com/in/hans-lehndorff/)
+2.  Isaac Johnson - [LinkedIn](https://www.linkedin.com/in/isaacajohnson)
+3.  Jesse Debolt - [LinkedIn](https://www.linkedin.com/in/jessedebolt/)
