@@ -1,6 +1,8 @@
 ---
 title: "Data Science Portfolio"
 author: "Isaac Johnson"
+date: "April 1, 2023"
+date-format: "long"
 format: 
    revealjs:
      multiplex: true

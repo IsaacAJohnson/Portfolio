@@ -1,7 +1,8 @@
 ---
 title: "Murder Rates"
 author: "Isaac Johnson"
-date: "2023-23-04"
+date: "February 1, 2023"
+date-format: "long"
 format: html
 code-fold: true
 code-summary: "Show the code"
@@ -61,31 +62,31 @@ Create Leaflet Map
 #| message: false
 #| warning: false
 
-
-# Create the leaflet map
-leaflet_map <- leaflet() %>%
-  addProviderTiles("CartoDB.Positron") %>%
-  addPolygons(
-    data = us_states_map_data,
-    group = "states",
-    fillColor = ~color_pal(Murder),
-    color = "#BDBDC3",
-    fillOpacity = 0.7,
-    weight = 1,
-    label = ~paste0(NAME, ": ", Murder, " murders per 100,000"),
-    labelOptions = labelOptions(direction = "auto")
-  ) %>%
-  addLegend(
-    pal = color_pal,
-    values = arrests_data$Murder,
-    title = "Murders per 100,000",
-    position = "bottomright",
-    opacity = 0.7,
-    labFormat = labelFormat(prefix = ""),
-    labels = c("Low", "Medium-Low", "Medium", "Medium-High", "High")
-  )
-
-# Display the leaflet map
-leaflet_map
+# 
+# # Create the leaflet map
+# leaflet_map <- leaflet() %>%
+#   addProviderTiles("CartoDB.Positron") %>%
+#   addPolygons(
+#     data = us_states_map_data,
+#     group = "states",
+#     fillColor = ~color_pal(Murder),
+#     color = "#BDBDC3",
+#     fillOpacity = 0.7,
+#     weight = 1,
+#     label = ~paste0(NAME, ": ", Murder, " murders per 100,000"),
+#     labelOptions = labelOptions(direction = "auto")
+#   ) %>%
+#   addLegend(
+#     pal = color_pal,
+#     values = arrests_data$Murder,
+#     title = "Murders per 100,000",
+#     position = "bottomright",
+#     opacity = 0.7,
+#     labFormat = labelFormat(prefix = ""),
+#     labels = c("Low", "Medium-Low", "Medium", "Medium-High", "High")
+#   )
+# 
+# # Display the leaflet map
+# leaflet_map
 
 ```
